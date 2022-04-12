@@ -20,7 +20,7 @@ class _OuvertureState extends State<Ouverture> {
         child: const Text('T`Etudes, For Strangers by Strangers !',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.lightBlue,
+              color: Colors.lightBlueAccent,
               fontSize: 16.0,
               fontWeight: FontWeight.bold,
               letterSpacing: 0.15,
