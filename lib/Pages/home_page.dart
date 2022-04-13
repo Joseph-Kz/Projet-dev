@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'Login.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,7 +17,21 @@ class HomePage extends StatelessWidget {
         ),
       ),
       backgroundColor: const Color.fromARGB(255, 230, 230, 230),
-      body: Container(),
+      body: Container(
+
+        child: ElevatedButton(
+          child: Text("Logout"),
+          onPressed: () {
+            FirebaseAuth.instance.signOut().then((value) {
+              print("Signed Out");
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SignInScreen()));
+
+              }
+            );
+          },
+        ),
+      ),
     );
   }
 }
