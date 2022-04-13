@@ -17,7 +17,7 @@ class _OuvertureState extends State<Ouverture> {
     return Column(children: <Widget>[
       Image.network(owlUrl),
       TextButton(
-        child: const Text('T`Etudes, For Strangers by Strangers !',
+        child: const Text("T`Etudes's, For Strangers by Strangers !",
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.lightBlueAccent,
@@ -25,7 +25,10 @@ class _OuvertureState extends State<Ouverture> {
               fontWeight: FontWeight.bold,
               letterSpacing: 0.15,
             )),
-        onPressed: (() => {HomePage}),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const HomePage()));
+        },
       )
     ]);
   }
