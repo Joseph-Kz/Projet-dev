@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "872722652597",
+    "project_id": "t-etude-s-e91d5",
+    "storage_bucket": "t-etude-s-e91d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872722652597:android:589f08aff70712110dcdfc",
+        "android_client_info": {
+          "package_name": "com.example.projet_tetudes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "872722652597-33nn07hdfqlss6tubnnbcel2p1apsa84.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.projet_tetudes",
+            "certificate_hash": "0e94199a95bd593435fec8ec433fee674137185a"
+          }
+        },
+        {
+          "client_id": "872722652597-md2l75hhhve23m0acqu21i5e8cvnsf5e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdp8-c9VZY8mdc1oD0BmqRG7JfFR8mY1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872722652597-md2l75hhhve23m0acqu21i5e8cvnsf5e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

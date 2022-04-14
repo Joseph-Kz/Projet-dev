@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:projet_tetudes/Pages/profile.dart';
+import 'Login.dart';
 
 import 'package:projet_tetudes/Pages/ouverture.dart';
 
@@ -11,6 +15,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final ScrollController scrollController = ScrollController();
+
+  int _limit = 20;
+  final int _limitIncrement = 20;
+  String _textSearch = "";
+  bool isLoading = false;
+
+  late String currentUserId;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,84 +33,22 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: const Color.fromARGB(255, 37, 24, 150),
           actions: [
             IconButton(
-                onPressed: () => googleSignOut(),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignInScreen()));
+                },
                 icon: const Icon(Icons.logout)),
             IconButton(
                 onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const HomePage()));
+                          builder: (context) => const ProfilePage()));
                 },
                 icon: const Icon(Icons.person)),
           ]),
     );
-  }
-
-  googleSignOut() {}
-}
-
-class SearchBar extends StatefulWidget {
-  const SearchBar({Key? key}) : super(key: key);
-
-  @override
-  _SearchBarState createState() => _SearchBarState();
-}
-
-class _SearchBarState extends State<SearchBar> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 15,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(
-            width: 5,
-          ),
-          const Icon(
-            Icons.person_search,
-            color: Colors.white,
-          ),
-          const SizedBox(
-            width: 5,
-          ),
-          Expanded(
-            child: TextFormField(
-              textInputAction: TextInputAction.search,
-              onChanged: (value) {
-                if (value.isNotEmpty) {
-                  setState(() {});
-                } else {
-                  setState(() {});
-                }
-              },
-              decoration: const InputDecoration.collapsed(
-                hintText: 'Search here...',
-                hintStyle: TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
-          StreamBuilder(builder: (context, snapshot) {
-            return snapshot.data == true
-                ? GestureDetector(
-                    onTap: () {
-                      setState(() {});
-                    },
-                    child: const Icon(
-                      Icons.clear_rounded,
-                      color: Colors.grey,
-                      size: 20,
-                    ),
-                  )
-                : const SizedBox.shrink();
-          })
-        ],
-      ),
-      decoration: BoxDecoration(
-        color: Colors.lightBlueAccent,
-      ),
-    );
-    throw UnimplementedError();
   }
 }
