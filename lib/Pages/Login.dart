@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_tetudes/Pages/home_page.dart';
 import 'package:projet_tetudes/Widget/widget.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:provider/provider.dart';
 
+import '../Blocs/auth_bloc.dart';
 import '../utils/hex_color.dart';
 import 'Signup.dart';
 
@@ -14,7 +18,30 @@ class SignInScreen extends StatefulWidget {
   _SignInScreenState createState() => _SignInScreenState();
 }
 GlobalMethods _globalMethods = GlobalMethods();
+
 class _SignInScreenState extends State<SignInScreen> {
+  // late StreamSubscription<User> loginStateSubscription;
+
+  @override
+  void initState() {
+    var authBloc = Provider.of<AuthBloc>(context, listen: false);
+    authBloc.currentUser.listen((fbUser) {
+      if (fbUser != null) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => HomePage(),
+          ),
+        );
+      }
+    });
+    super.initState();
+  }
+  @override
+  // void dispose() {
+  //   loginStateSubscription.cancel();
+  //   super.dispose();
+  // }
+
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   @override
@@ -97,13 +124,13 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
   Row Googlebutton() {
+    final authBloc = Provider.of<AuthBloc>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SignInButton(
           Buttons.Google,
-          onPressed: () => Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => HomePage())),
+          onPressed: () => authBloc.loginGoogle(),
         )
       ]
     );

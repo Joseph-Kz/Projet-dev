@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:projet_tetudes/Blocs/auth_bloc.dart';
 import 'Pages/Login.dart';
+import 'package:provider/provider.dart';
 import 'Pages/ouverture.dart';
 import 'Pages/home_page.dart';
 
@@ -14,9 +16,12 @@ class TEtudes extends StatelessWidget {
   const TEtudes({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return Provider(
+      create: (context) => AuthBloc(),
+      child: const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const SignInScreen(),
+      )
     );
   }
 }
