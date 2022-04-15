@@ -1,6 +1,9 @@
 # projet_tetudes
 
-A new Flutter project.
+Réalisation de l'application T`Etude's` permettant la mise en relation de personnes pour s'entraider dans le cadre des cours.
+Pour éxecuter l'application, ils vous faudra d'abord installer le Sdk Dart et Flutter ainsi que l'application Android Studio dont vous pourrez réaliser l'installation grâce au site officielle de Flutter (https://docs.flutter.dev/get-started/install?gclid=Cj0KCQjwr-SSBhC9ARIsANhzu150Lr20HcHic5WT5cE_MvNC1wClfklupJr8K1KLoXU5Egbk2JiE804aAsxLEALw_wcB&gclsrc=aw.ds)
+
+Une fois ces installations faites, vous pourrez directement compiler l'application et la lancer depuis votre terminal.
 
 ## Getting Started
 
