@@ -4,7 +4,7 @@ import 'Pages/Login.dart';
 import 'Pages/ouverture.dart';
 import 'Pages/home_page.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const TEtudes());
@@ -16,7 +16,7 @@ class TEtudes extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const SignInScreen(),
+      home: const Ouverture(),
     );
   }
 }
