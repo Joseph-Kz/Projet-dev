@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'Pages/ouverture.dart';
 import 'Pages/home_page.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const TEtudes());
@@ -17,11 +17,10 @@ class TEtudes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Provider(
-      create: (context) => AuthBloc(),
-      child: const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const SignInScreen(),
-      )
-    );
+        create: (context) => AuthBloc(),
+        child: const MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: const Ouverture(),
+        ));
   }
 }

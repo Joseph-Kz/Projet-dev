@@ -17,6 +17,7 @@ class SignInScreen extends StatefulWidget {
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }
+
 GlobalMethods _globalMethods = GlobalMethods();
 
 class _SignInScreenState extends State<SignInScreen> {
@@ -71,26 +72,23 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 reusableTextField("Password", Icons.lock_outline, true,
                     _passwordTextController),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                        forgetPassword(context),
-                        firebaseUIButton(context, "Sign In", ()  {
-
-                            FirebaseAuth.instance
-                                .signInWithEmailAndPassword(
-                                email: _emailTextController.text,
-                                password: _passwordTextController.text)
-                                .then((value) {
-                              Navigator.push(context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HomePage()));
-                            }).onError((error, stackTrace) {
-                              String Error_message = "Error ${error.toString()}";
-                              _globalMethods.showErrorDialog(Error_message, context);
-                            });
-                          }
-                          ),
+                const SizedBox(
+                  height: 5,
+                ),
+                forgetPassword(context),
+                firebaseUIButton(context, "Sign In", () {
+                  FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                          email: _emailTextController.text,
+                          password: _passwordTextController.text)
+                      .then((value) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  }).onError((error, stackTrace) {
+                    String Error_message = "Error ${error.toString()}";
+                    _globalMethods.showErrorDialog(Error_message, context);
+                  });
+                }),
                 signUpOption(),
                 const SizedBox(
                   height: 20,
@@ -123,7 +121,9 @@ class _SignInScreenState extends State<SignInScreen> {
       ],
     );
   }
+
   Row Googlebutton() {
+<<<<<<< HEAD
     final authBloc = Provider.of<AuthBloc>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -134,5 +134,14 @@ class _SignInScreenState extends State<SignInScreen> {
         )
       ]
     );
+=======
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      SignInButton(
+        Buttons.Google,
+        onPressed: () => Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => Googlebutton())),
+      )
+    ]);
+>>>>>>> b820c06af73cc4f9d35580b4135a9df88adb989c
   }
 }

@@ -8,6 +8,7 @@ import 'package:projet_tetudes/Pages/profile.dart';
 import '../Blocs/auth_bloc.dart';
 import 'package:provider/provider.dart';
 import 'Login.dart';
+import 'package:projet_tetudes/Pages/ouverture.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,6 +19,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePage extends State<HomePage> {
   // late StreamSubscription<User> loginStateSubscription;
+  final ScrollController scrollController = ScrollController();
+
+  int _selectedIndex = 0;
+  late String currentUserId;
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   @override
   void initState() {
@@ -45,40 +56,46 @@ class _HomePage extends State<HomePage> {
     final authBloc = Provider.of<AuthBloc>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 37, 24, 150),
-        title: const Text(
-          'T`Etudes',
-          textAlign: TextAlign.center,
-        ),
-      ),
-      backgroundColor: const Color.fromARGB(255, 230, 230, 230),
-      body: Center(
-        child: Column(children: [
-          ElevatedButton(
-            child: Text("Logout"),
-            onPressed: () {
-              authBloc.logout();
-              FirebaseAuth.instance.signOut().then((value) {
-                print("Signed Out");
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
-              });
-            },
+          centerTitle: true,
+          title: const Text("T`Etude's"),
+          backgroundColor: const Color.fromARGB(255, 37, 24, 150),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  authBloc.logout();
+                  FirebaseAuth.instance.signOut().then((value) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  });
+                },
+                icon: const Icon(Icons.logout)),
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfilePage()));
+                },
+                icon: const Icon(Icons.person)),
+          ]),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
+            label: 'Message',
           ),
-
-          // SignInButton(
-          //   Buttons.Google,
-          //   text: 'Sign Out of Google',
-          //   onPressed: () => Profile(),
-          // ),
-
-          SignInButton(
-            Buttons.Google,
-            text: 'Sign Out of Google',
-            onPressed: () => authBloc.logout(),
-          )
-        ] // children
-            ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_month),
+            label: 'Calendrier',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
       ),
     );
   }
