@@ -37,11 +37,7 @@ packages:
     source: hosted
     version: "1.1.0"
   cloud_firestore:
-<<<<<<< HEAD
     dependency: "direct dev"
-=======
-    dependency: "direct main"
->>>>>>> b820c06af73cc4f9d35580b4135a9df88adb989c
     description:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
