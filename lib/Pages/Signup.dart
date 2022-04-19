@@ -93,10 +93,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
                           .then((value) async {
-                          UserSetup(_FullNameTextController.text, _AgeTextController.text, _EducationTextController.text, _LanguagesTextController.text, _bioTextController.text);
+                        UserSetup(_FullNameTextController.text, _AgeTextController.text, _EducationTextController.text, _LanguagesTextController.text, _bioTextController.text);
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) => HomePage()));
-
+                        if (user!= null && !user.emailVerified) {
+                          await user.sendEmailVerification();
+                        }
                           // await user?.sendEmailVerification();
                       }).onError((error, stackTrace) {
                         String Error_message = "Error ${error.toString()}";
